@@ -44,13 +44,23 @@ Joins four tables (`order_items`, `orders`, `products`, `category_translation`).
 **Finding:** revenue depends on both volume and price. `bed_bath_table` has the most orders but ranks third, while `watches_gifts` ranks second with far fewer orders because each order is worth about R$212. Filtering to delivered orders also reshuffled the lower ranks (positions 7 to 10) compared with an unfiltered query.
 
 ### 2. Monthly revenue and growth (`LAG`)
-From January 2017, delivered revenue grew from about R$112K (750 orders) to R$648K (4,478 orders) by October 2017, roughly 5.8x in nine months. *(Add the Nov 2017 to Aug 2018 findings here from your own query output.)*
+Delivered revenue grew from about R$112K (750 orders) in January 2017 to R$648K (4,478 orders) by October 2017, roughly 5.8x in nine months. The peak came in **November 2017: R$987,765 from 7,289 orders (+52.4% on October)**, followed by a drop of 26.5% in December. From March 2018 onwards, growth flattened out: monthly revenue stayed between about R$830K and R$980K (+15.4% in March, then +2.1% and +0.4% in April and May, then -12.4% in June). August 2018 closed at R$838,577, still about 7.5x January 2017 but below the November 2017 peak.
+
+**Finding:** the business scaled quickly through 2017, then plateaued in 2018 rather than continuing to grow.
 
 ### 3. Top 3 categories per state (`RANK` + chained CTEs)
-Returns 81 rows (27 states x 3). *(Add one observation from your result, e.g. which categories lead in SP vs. a smaller state.)* Small states have small revenue totals, so their rankings rest on few orders.
+Returns 81 rows (27 states x 3). The leading category changes by state:
+
+| State | #1 | #2 | #3 |
+|---|---|---|---|
+| SP (largest) | bed_bath_table (R$472K) | health_beauty (R$454K) | watches_gifts (R$422K) |
+| RJ | watches_gifts (R$175K) | bed_bath_table (R$144K) | health_beauty (R$140K) |
+| RR (smallest shown) | sports_leisure (R$1.4K) | home_appliances (R$954) | baby (R$950) |
+
+**Finding:** the national #1 category, `health_beauty`, is not #1 in either of the two biggest states (it is #2 in SP and #3 in RJ), and `watches_gifts` leads in RJ. In SP the top three are within about 11% of each other. In RR, the top three categories total only about R$3.3K, so the ranking there rests on a handful of orders and shouldn't be over-read.
 
 ### 4. Late deliveries by state
-24 states have at least 100 delivered orders. Late deliveries are highest in the northeast, for example AL (23.9% late), MA (19.7%), PI (16.0%) and CE (15.3%). Slow is not the same as late: PA averages 23.7 days to deliver but 12.4% of orders are late, while RJ (the largest late-order count, 12,350 orders) is late 13.5% of the time.
+24 states have at least 100 delivered orders. Late deliveries are highest in the northeast, for example AL (23.9% late), MA (19.7%), PI (16.0%) and CE (15.3%). Slow is not the same as late: PA averages 23.7 days to deliver but 12.4% of orders are late, while RJ, with 12,350 delivered orders, is late 13.5% of the time.
 
 ### 5. Repeat-customer rate
 Of 93,358 customers with a delivered order, 2,801 (3.00%) ordered more than once, and the most orders from one customer was 15.
