@@ -78,3 +78,11 @@ Of 93,358 customers with a delivered order, 2,801 (3.00%) ordered more than once
 - "Late" is measured against Olist's own estimated delivery date, not against customer expectations.
 - The dataset covers roughly 2016 to 2018 and is from a single marketplace.
 - Rankings in small states rest on few orders.
+
+## Dashboard
+
+![Olist sales dashboard](images/dashboard.png)
+
+Interactive Power BI dashboard built on an order-item-level table exported from MySQL
+(109,880 rows). Selecting a state updates every KPI and chart. Figures cover delivered orders
+from Jan 2017 to Aug 2018, so they differ slightly from the full-period SQL results below.
